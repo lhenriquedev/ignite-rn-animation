@@ -10,6 +10,8 @@ import { QuizCard } from '../../components/QuizCard';
 import { styles } from './styles';
 import { QUIZZES } from '../../data/quizzes';
 
+import Animated from 'react-native-reanimated';
+
 export function Home() {
   const [quizzes, setQuizzes] = useState(QUIZZES);
   const [levels, setLevels] = useState([1, 2, 3]);
@@ -50,8 +52,9 @@ export function Home() {
       <FlatList
         data={quizzes}
         keyExtractor={item => item.id}
-        renderItem={({ item }) => (
+        renderItem={({ item, index }) => (
           <QuizCard
+            index={index}
             data={item}
             onPress={() => navigate('quiz', { id: item.id })}
           />
